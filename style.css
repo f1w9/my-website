@@ -6,84 +6,54 @@
 }
 
 body{
-
-    height:100vh;
-
-    overflow:hidden;
-
+    min-height:100vh;
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
-    background:linear-gradient(135deg,#69d2ff,#9ee8ff);
-
+    overflow:hidden;
+    background:linear-gradient(135deg,#62d6ff,#b8f4ff);
 }
 
 .container{
-
+    width:90%;
+    max-width:900px;
     text-align:center;
-
 }
 
 h1{
-
-    color:white;
-
-    font-size:50px;
-
-    text-shadow:0 4px 10px rgba(0,0,0,.25);
-
+    color:#fff;
+    font-size:clamp(28px,5vw,55px);
+    text-shadow:0 5px 15px rgba(0,0,0,.25);
 }
 
 p{
-
-    color:white;
-
+    color:#fff;
+    font-size:clamp(16px,2.5vw,22px);
     margin-top:15px;
-
-    margin-bottom:45px;
-
-    font-size:22px;
-
+    margin-bottom:40px;
 }
 
 .buttons{
-
     display:flex;
-
-    gap:45px;
-
     justify-content:center;
-
+    gap:35px;
+    flex-wrap:wrap;
 }
 
 .btn{
 
-    width:230px;
-
-    height:150px;
+    width:220px;
+    height:140px;
 
     border:none;
 
-    border-radius:35px;
-
-    font-size:42px;
-
-    color:white;
+    border-radius:28px;
 
     cursor:pointer;
 
-    transition:.25s;
+    color:white;
 
-    box-shadow:
-
-    inset 0 8px rgba(255,255,255,.35),
-
-    inset 0 -10px rgba(0,0,0,.25),
-
-    0 18px 35px rgba(0,0,0,.35);
+    font-size:42px;
 
     display:flex;
 
@@ -93,13 +63,20 @@ p{
 
     align-items:center;
 
+    transition:.25s;
+
     position:relative;
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.30),
+    inset 0 6px rgba(255,255,255,.35),
+    inset 0 -8px rgba(0,0,0,.25);
 
 }
 
 .btn span{
 
-    font-size:30px;
+    font-size:28px;
 
     margin-top:10px;
 
@@ -107,25 +84,25 @@ p{
 
 .red{
 
-    background:#ff2d2d;
+    background:linear-gradient(#ff6262,#ff2020);
 
 }
 
 .green{
 
-    background:#1acb52;
+    background:linear-gradient(#52e67d,#11b848);
 
 }
 
 .btn:hover{
 
-    transform:scale(1.08);
+    transform:translateY(-8px) scale(1.05);
 
 }
 
 .btn:active{
 
-    transform:scale(.95);
+    transform:scale(.96);
 
 }
 
@@ -160,29 +137,59 @@ transform:translateY(-350px) rotate(720deg) scale(.2);
 }
 
 }
-@media (max-width: 600px) {
 
-    h1{
-        font-size:32px;
-    }
+/* ========================= */
+/* للجوال */
+/* ========================= */
 
-    p{
-        font-size:18px;
-    }
+@media (max-width:768px){
 
-    .buttons{
-        flex-direction:column;
-        gap:20px;
-    }
+body{
 
-    .btn{
-        width:180px;
-        height:120px;
-        font-size:32px;
-    }
+padding:20px;
 
-    .btn span{
-        font-size:22px;
-    }
+}
+
+.buttons{
+
+flex-direction:column;
+
+align-items:center;
+
+gap:20px;
+
+}
+
+.btn{
+
+width:170px;
+
+height:105px;
+
+font-size:32px;
+
+border-radius:22px;
+
+}
+
+.btn span{
+
+font-size:20px;
+
+}
+
+h1{
+
+font-size:34px;
+
+}
+
+p{
+
+font-size:18px;
+
+margin-bottom:30px;
+
+}
 
 }
