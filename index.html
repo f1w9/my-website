@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بط أم قطط؟</title>
+    <title>التحدي</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,20 +13,54 @@
 
 <div class="container">
 
-    <h1>اختر حيوانك المفضل 🐾</h1>
-    <p>اضغط على أحد الزرين وشاهد المفاجأة!</p>
+    <h1>التحدي 🔥</h1>
+    <p>اضغط على الزر الذي تشجعه</p>
 
-    <div class="buttons">
+    <!-- زر فراج -->
 
-        <button id="duckBtn" class="btn red">
-            🦆
-            <span>بط</span>
+    <div class="player">
+
+        <button id="farajBtn" class="btn red">
+
+            <span>فراج</span>
+
         </button>
 
-        <button id="catBtn" class="btn green">
-            🐱
-            <span>قطط</span>
+        <div class="scoreBox">
+
+            <div id="farajBar" class="bar"></div>
+
+        </div>
+
+        <div id="farajCount" class="count">
+
+            0 ضغطة
+
+        </div>
+
+    </div>
+
+    <!-- زر سعد -->
+
+    <div class="player">
+
+        <button id="saadBtn" class="btn blue">
+
+            <span>سعد</span>
+
         </button>
+
+        <div class="scoreBox">
+
+            <div id="saadBar" class="bar blueBar"></div>
+
+        </div>
+
+        <div id="saadCount" class="count">
+
+            0 ضغطة
+
+        </div>
 
     </div>
 
@@ -35,4 +69,5 @@
 <script src="script.js"></script>
 
 </body>
+
 </html>
