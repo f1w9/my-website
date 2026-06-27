@@ -70,3 +70,5 @@ saadBtn.addEventListener("click", () => {
 });
 
 updateBars();
+
+
