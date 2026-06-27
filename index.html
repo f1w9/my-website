@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>التحدي</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -16,58 +15,38 @@
     <h1>التحدي 🔥</h1>
     <p>اضغط على الزر الذي تشجعه</p>
 
-    <!-- زر فراج -->
-
     <div class="player">
-
-        <button id="farajBtn" class="btn red">
-
-            <span>فراج</span>
-
-        </button>
+        <div class="button-wrapper">
+            <button id="farajBtn" class="btn red">
+                <span>فراج</span>
+            </button>
+            <div id="farajEmojis" class="emoji-container"></div>
+        </div>
 
         <div class="scoreBox">
-
-            <div id="farajBar" class="bar"></div>
-
+            <div id="farajBar" class="bar redBar"></div>
         </div>
 
-        <div id="farajCount" class="count">
-
-            0 ضغطة
-
-        </div>
-
+        <div id="farajCount" class="count">0 ضغطة</div>
     </div>
 
-    <!-- زر سعد -->
-
     <div class="player">
-
-        <button id="saadBtn" class="btn blue">
-
-            <span>سعد</span>
-
-        </button>
+        <div class="button-wrapper">
+            <button id="saadBtn" class="btn blue">
+                <span>سعد</span>
+            </button>
+            <div id="saadEmojis" class="emoji-container"></div>
+        </div>
 
         <div class="scoreBox">
-
             <div id="saadBar" class="bar blueBar"></div>
-
         </div>
 
-        <div id="saadCount" class="count">
-
-            0 ضغطة
-
-        </div>
-
+        <div id="saadCount" class="count">0 ضغطة</div>
     </div>
 
 </div>
 
 <script src="script.js"></script>
-
 </body>
-
 </html>
