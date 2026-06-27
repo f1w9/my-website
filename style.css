@@ -11,7 +11,7 @@ body{
     justify-content:center;
     align-items:center;
     overflow:hidden;
-    background:linear-gradient(to bottom, #000000 0%, #000000 60%, #3a0000 100%);
+    background: linear-gradient(to bottom, #000000 0%, #000000 50%, #4a0000 100%);
 }
 
 .container{
@@ -35,7 +35,14 @@ p{
 
 .player{
     margin-bottom:40px;
-    position:relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-wrapper {
+    position: relative;
+    display: inline-block;
 }
 
 .btn{
@@ -44,17 +51,19 @@ p{
     border:none;
     border-radius:22px;
     cursor:pointer;
-    color:white;
     font-size:34px;
     font-weight:bold;
-    transition:.18s;
+    transition:.1s;
     box-shadow:0 10px 25px rgba(0,0,0,.45), inset 0 3px rgba(255,255,255,.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn span{
     color:white;
-    -webkit-text-stroke:2px black;
-    text-shadow:2px 2px 3px black;
+    -webkit-text-stroke: 2px black;
+    text-shadow: 2px 2px 2px black;
 }
 
 .red{
@@ -65,33 +74,34 @@ p{
     background:linear-gradient(#004da8,#001f5f);
 }
 
-.btn:hover{
-    transform:scale(1.05);
-}
-
 .btn:active{
     transform:scale(.95);
 }
 
-/* شريط السكور */
 .scoreBox{
     width:260px;
     height:18px;
-    background:#333;
+    background:#222;
     border-radius:20px;
     overflow:hidden;
     margin:15px auto 8px;
+    border: 1px solid #444;
 }
 
 .bar{
-    width:0%;
+    width: 0%;
     height:100%;
-    background:#ff2222;
-    transition:width .25s ease;
+    transition: width 0.1s ease-out;
+}
+
+.redBar {
+    background: #ff2222;
+    box-shadow: 0 0 10px #ff2222;
 }
 
 .blueBar{
     background:#2196ff;
+    box-shadow: 0 0 10px #2196ff;
 }
 
 .count{
@@ -99,63 +109,40 @@ p{
     font-size:18px;
 }
 
-/* الإيموجي بجانب الزر */
-.emojiBox{
-    position:absolute;
-    top:20px;
-    right:calc(100% + 20px);
-    display:flex;
-    gap:8px;
-    align-items:center;
+.emoji-container {
+    position: absolute;
+    top: 0;
+    right: -100px;
+    width: 80px;
+    height: 95px;
+    pointer-events: none;
 }
 
-/* الإيموجي نفسه */
 .emoji{
-    font-size:28px;
+    position: absolute;
+    font-size: 28px;
     user-select:none;
-    display:inline-block;
-    animation: fly 1.2s ease-out forwards;
+    opacity: 1;
+    animation: flyUp 0.8s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+    transition: transform 0.1s ease;
 }
 
-/* تكبير عند الضغط */
-.emoji.pop{
-    animation: pop .2s ease-in-out;
-}
-
-@keyframes fly{
-    0%{
-        opacity:1;
-        transform:translateY(0) scale(1);
+@keyframes flyUp {
+    0% {
+        transform: translateY(20px) scale(var(--emoji-scale, 1));
+        opacity: 0;
     }
-    100%{
-        opacity:0;
-        transform:translateY(-220px) scale(.4) rotate(360deg);
+    20% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-80px) translateX(var(--random-x, 0px)) scale(calc(var(--emoji-scale, 1) * 0.7));
+        opacity: 0;
     }
 }
 
-@keyframes pop{
-    0%{ transform:scale(1); }
-    50%{ transform:scale(1.6); }
-    100%{ transform:scale(1); }
-}
-
-/* موبايل */
 @media(max-width:768px){
-    .btn{
-        width:210px;
-        height:82px;
-        font-size:28px;
-    }
-
-    .scoreBox{
-        width:210px;
-    }
-
-    h1{
-        font-size:34px;
-    }
-
-    p{
-        font-size:18px;
-    }
+    .btn{ width:210px; height:82px; font-size:28px; }
+    .scoreBox{ width:210px; }
+    .emoji-container { right: -70px; }
 }
