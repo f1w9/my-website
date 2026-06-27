@@ -13,60 +13,60 @@ const saadBox = document.getElementById("saadEmojis");
 let farajCount = 0;
 let saadCount = 0;
 
-function updateBars(){
-    const total = farajCount + saadCount;
+let lastClickTimeFaraj = 0;
+let lastClickTimeSaad = 0;
 
-    if(total === 0){
-        farajBar.style.width = "0%";
-        saadBar.style.width = "0%";
-    } else {
-        farajBar.style.width = (farajCount / total * 100) + "%";
-        saadBar.style.width = (saadCount / total * 100) + "%";
-    }
-
+function updateBars() {
     farajCountText.textContent = ${farajCount} ضغطة;
     saadCountText.textContent = ${saadCount} ضغطة;
+
+    farajBar.style.width = ${Math.min(farajCount * 2, 100)}%;
+    saadBar.style.width = ${Math.min(saadCount * 2, 100)}%;
 }
 
-function spawnEmoji(box, icons){
-    for(let i = 0; i < 10; i++){
+function spawnEmoji(box, icons, isFast) {
+    const emoji = document.createElement("div");
+    emoji.className = "emoji";
+    emoji.textContent = icons[Math.floor(Math.random() * icons.length)];
 
-        const emoji = document.createElement("div");
-        emoji.className = "emoji";
+    const randomX = (Math.random() * 40 - 20) + "px";
+    emoji.style.setProperty('--random-x', randomX);
+    emoji.style.left = "20px";
+    emoji.style.top = (Math.random() * 40 + 20) + "px";
 
-        emoji.textContent = icons[Math.floor(Math.random() * icons.length)];
-
-        // داخل نفس المكان بجانب الزر
-        emoji.style.position = "absolute";
-        emoji.style.left = (10 + Math.random() * 60) + "px";
-        emoji.style.top = (Math.random() * 30) + "px";
-
-        box.appendChild(emoji);
-
-        setTimeout(() => emoji.remove(), 1200);
+    if (isFast) {
+        emoji.style.setProperty('--emoji-scale', '1.6');
+    } else {
+        emoji.style.setProperty('--emoji-scale', '1');
     }
+
+    box.appendChild(emoji);
+
+    setTimeout(() => {
+        emoji.remove();
+    }, 800);
 }
 
-function popButton(btn){
-    btn.classList.remove("pop");
-    void btn.offsetWidth; // restart animation
-    btn.classList.add("pop");
-}
-
-/* فراج */
 farajBtn.addEventListener("click", () => {
     farajCount++;
+    
+    const currentTime = Date.now();
+    const isFast = (currentTime - lastClickTimeFaraj) < 250;
+    lastClickTimeFaraj = currentTime;
+
     updateBars();
-    spawnEmoji(farajBox, ["💪🏻", "👍🏻"]);
-    popButton(farajBtn);
+    spawnEmoji(farajBox, ["💪🏻", "👍🏻"], isFast);
 });
 
-/* سعد */
 saadBtn.addEventListener("click", () => {
     saadCount++;
+
+    const currentTime = Date.now();
+    const isFast = (currentTime - lastClickTimeSaad) < 250;
+    lastClickTimeSaad = currentTime;
+
     updateBars();
-    spawnEmoji(saadBox, ["👎🏻", "🦶🏻"]);
-    popButton(saadBtn);
+    spawnEmoji(saadBox, ["👎🏻", "🦶🏻"], isFast);
 });
 
 updateBars();
