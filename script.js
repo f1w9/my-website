@@ -7,73 +7,66 @@ const saadBar = document.getElementById("saadBar");
 const farajCountText = document.getElementById("farajCount");
 const saadCountText = document.getElementById("saadCount");
 
+const farajBox = document.getElementById("farajEmojis");
+const saadBox = document.getElementById("saadEmojis");
+
 let farajCount = 0;
 let saadCount = 0;
 
 function updateBars(){
-
     const total = farajCount + saadCount;
 
-    if(total===0){
-        farajBar.style.width="0%";
-        saadBar.style.width="0%";
-        return;
+    if(total === 0){
+        farajBar.style.width = "0%";
+        saadBar.style.width = "0%";
+    } else {
+        farajBar.style.width = (farajCount / total * 100) + "%";
+        saadBar.style.width = (saadCount / total * 100) + "%";
     }
 
-    farajBar.style.width=(farajCount/total*100)+"%";
-    saadBar.style.width=(saadCount/total*100)+"%";
-
-    farajCountText.textContent=farajCount+" ضغطة";
-    saadCountText.textContent=saadCount+" ضغطة";
-
+    farajCountText.textContent = ${farajCount} ضغطة;
+    saadCountText.textContent = ${saadCount} ضغطة;
 }
 
-function explode(button,icons){
+function spawnEmoji(box, icons){
+    for(let i = 0; i < 10; i++){
 
-    const rect=button.getBoundingClientRect();
+        const emoji = document.createElement("div");
+        emoji.className = "emoji";
 
-    for(let i=0;i<18;i++){
+        emoji.textContent = icons[Math.floor(Math.random() * icons.length)];
 
-        const emoji=document.createElement("div");
+        // داخل نفس المكان بجانب الزر
+        emoji.style.position = "absolute";
+        emoji.style.left = (10 + Math.random() * 60) + "px";
+        emoji.style.top = (Math.random() * 30) + "px";
 
-        emoji.className="emoji";
+        box.appendChild(emoji);
 
-        emoji.textContent=icons[Math.floor(Math.random()*icons.length)];
-
-        emoji.style.left=(rect.right+20+Math.random()*120)+"px";
-
-        emoji.style.top=(rect.top+Math.random()*rect.height)+"px";
-
-        emoji.style.fontSize=(34+Math.random()*18)+"px";
-
-        document.body.appendChild(emoji);
-
-        setTimeout(()=>{
-            emoji.remove();
-        },1500);
-
+        setTimeout(() => emoji.remove(), 1200);
     }
-
 }
 
-farajBtn.addEventListener("click",()=>{
+function popButton(btn){
+    btn.classList.remove("pop");
+    void btn.offsetWidth; // restart animation
+    btn.classList.add("pop");
+}
 
+/* فراج */
+farajBtn.addEventListener("click", () => {
     farajCount++;
-
     updateBars();
-
-    explode(farajBtn,["💪🏻","👍🏻"]);
-
+    spawnEmoji(farajBox, ["💪🏻", "👍🏻"]);
+    popButton(farajBtn);
 });
 
-saadBtn.addEventListener("click",()=>{
-
+/* سعد */
+saadBtn.addEventListener("click", () => {
     saadCount++;
-
     updateBars();
-
-    explode(saadBtn,["👎🏻","🦶🏻"]);
-
+    spawnEmoji(saadBox, ["👎🏻", "🦶🏻"]);
+    popButton(saadBtn);
 });
 
 updateBars();
