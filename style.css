@@ -11,7 +11,7 @@ body{
     justify-content:center;
     align-items:center;
     overflow:hidden;
-    background:linear-gradient(to top,#5a0000,#000000);
+    background:linear-gradient(to bottom, #000000 0%, #000000 60%, #3a0000 100%);
 }
 
 .container{
@@ -39,166 +39,123 @@ p{
 }
 
 .btn{
-
     width:260px;
     height:95px;
-
     border:none;
-
     border-radius:22px;
-
     cursor:pointer;
-
     color:white;
-
     font-size:34px;
-
     font-weight:bold;
-
     transition:.18s;
-
-    box-shadow:
-    0 10px 25px rgba(0,0,0,.45),
-    inset 0 3px rgba(255,255,255,.2);
-
+    box-shadow:0 10px 25px rgba(0,0,0,.45), inset 0 3px rgba(255,255,255,.2);
 }
 
 .btn span{
-
     color:white;
-
     -webkit-text-stroke:2px black;
-
     text-shadow:2px 2px 3px black;
-
 }
 
 .red{
-
     background:linear-gradient(#900000,#4d0000);
-
 }
 
 .blue{
-
     background:linear-gradient(#004da8,#001f5f);
-
 }
 
 .btn:hover{
-
-transform:scale(1.05);
-
+    transform:scale(1.05);
 }
 
 .btn:active{
-
-transform:scale(.95);
-
+    transform:scale(.95);
 }
 
+/* شريط السكور */
 .scoreBox{
-
-width:260px;
-
-height:18px;
-
-background:#333;
-
-border-radius:20px;
-
-overflow:hidden;
-
-margin:15px auto 8px;
-
+    width:260px;
+    height:18px;
+    background:#333;
+    border-radius:20px;
+    overflow:hidden;
+    margin:15px auto 8px;
 }
 
 .bar{
-
-width:0%;
-
-height:100%;
-
-background:#ff2222;
-
-transition:.15s;
-
+    width:0%;
+    height:100%;
+    background:#ff2222;
+    transition:width .25s ease;
 }
 
 .blueBar{
-
-background:#2196ff;
-
+    background:#2196ff;
 }
 
 .count{
-
-color:white;
-
-font-size:18px;
-
+    color:white;
+    font-size:18px;
 }
 
+/* الإيموجي بجانب الزر */
+.emojiBox{
+    position:absolute;
+    top:20px;
+    right:calc(100% + 20px);
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+/* الإيموجي نفسه */
 .emoji{
+    font-size:28px;
+    user-select:none;
+    display:inline-block;
+    animation: fly 1.2s ease-out forwards;
+}
 
-position:fixed;
-
-pointer-events:none;
-
-user-select:none;
-
-animation:fly 1.4s linear forwards;
-
+/* تكبير عند الضغط */
+.emoji.pop{
+    animation: pop .2s ease-in-out;
 }
 
 @keyframes fly{
-
-0%{
-
-opacity:1;
-
-transform:translateY(0) scale(1);
-
+    0%{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+    100%{
+        opacity:0;
+        transform:translateY(-220px) scale(.4) rotate(360deg);
+    }
 }
 
-100%{
-
-opacity:0;
-
-transform:translateY(-220px) scale(.4) rotate(360deg);
-
+@keyframes pop{
+    0%{ transform:scale(1); }
+    50%{ transform:scale(1.6); }
+    100%{ transform:scale(1); }
 }
 
-}
-
+/* موبايل */
 @media(max-width:768px){
+    .btn{
+        width:210px;
+        height:82px;
+        font-size:28px;
+    }
 
-.btn{
+    .scoreBox{
+        width:210px;
+    }
 
-width:210px;
+    h1{
+        font-size:34px;
+    }
 
-height:82px;
-
-font-size:28px;
-
-}
-
-.scoreBox{
-
-width:210px;
-
-}
-
-h1{
-
-font-size:34px;
-
-}
-
-p{
-
-font-size:18px;
-
-}
-
+    p{
+        font-size:18px;
+    }
 }
